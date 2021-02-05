@@ -5,6 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 import javax.inject.Inject
 
 /**
@@ -16,7 +17,8 @@ interface APIService {
 
     @GET("user")
     suspend fun fetchAllUsers(
-        @Header("app-id") appId: String
+        @Header("app-id") appId: String,
+        @Query("limit") limit: Int
     ): UserListResponse<ArrayList<UserData>>
 
     @GET("user/{userId}")

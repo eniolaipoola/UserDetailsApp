@@ -11,23 +11,22 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     tools:ignore="RtlCompat, spUsage"
-    android:background="@color/item_card_background_color"
     app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/white"
     app:contentPadding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/userItem"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/white">
+        android:layout_height="60dp">
 
         <ImageView
-            android:id="@+id/image_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/user_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_weight="2"
             android:background="@drawable/image_circle_backgroud"
             android:contentDescription="@string/userImage"
-            android:padding="10dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,22 +34,22 @@
 
         <TextView
             android:id="@+id/user_title"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="30dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             tools:textSize="18dp"
             tools:text="@string/title"
             android:text="@string/title"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="@color/name_text_color"
-            app:layout_constraintStart_toEndOf="@+id/image_status"
+            app:layout_constraintStart_toEndOf="@+id/user_image"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="5dp"
             tools:text="@string/userName"
             android:textSize="18dp"
             android:gravity="center_vertical"
@@ -65,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textColor="@color/name_text_color"
-            android:textSize="15dp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="@+id/user_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name"

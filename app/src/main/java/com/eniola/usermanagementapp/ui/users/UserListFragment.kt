@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eniola.studyapp.utility.hide
 import com.eniola.studyapp.utility.show
 import com.eniola.studyapp.utility.toast
@@ -17,11 +18,12 @@ import kotlinx.android.synthetic.main.fragment_user_list.*
 import javax.inject.Inject
 
 
-class UserListFragment : BaseFragment() {
+class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<UserViewModel> { viewModelFactory }
+    private val adapter by lazy { UserListAdapter(this) }
 
 
     companion object {
@@ -41,9 +43,8 @@ class UserListFragment : BaseFragment() {
         val apiKey = BuildConfig.API_KEY
         viewModel.fetchAllUsers(apiKey)
 
-        //initiate service to update users table
-
         //fetch all users from database
+        viewModel.getUserFromDatabase()
 
         //on click of users, navigate to the detail page
 
@@ -67,10 +68,16 @@ class UserListFragment : BaseFragment() {
         viewModel.state.observe(viewLifecycleOwner) { viewState ->
             when(viewState) {
                 is ViewState.SUCCESS -> {
-
+                    loader.hide()
+                    //pass data list fetched from db to recyclerview
+                    adapter.setListItems(viewState.data)
+                    user_list_recyclerview.layoutManager = LinearLayoutManager(context,
+                        LinearLayoutManager.VERTICAL, false)
+                    user_list_recyclerview.adapter = adapter
                 }
 
                 is ViewState.ERROR -> {
+                    loader.hide()
                     activity?.toast(viewState.errorMessage)
                 }
 
@@ -88,5 +95,14 @@ class UserListFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
         viewModel.cancelJob()
+    }
+
+    override fun onUserClicked(view: View, item: UserData) {
+        //pick user id
+        //fetch user details
+
+        //pass details to next page
+
+
     }
 }
