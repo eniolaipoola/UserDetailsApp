@@ -40,7 +40,7 @@
             tools:textSize="18dp"
             tools:text="@string/title"
             android:text="@string/title"
-            android:gravity="start"
+            android:gravity="center_vertical|start"
             android:textColor="@color/name_text_color"
             app:layout_constraintStart_toEndOf="@+id/user_image"
             app:layout_constraintTop_toTopOf="parent"/>

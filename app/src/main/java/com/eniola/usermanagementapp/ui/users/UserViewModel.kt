@@ -1,5 +1,6 @@
 package com.eniola.usermanagementapp.ui.users
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.eniola.studyapp.utility.runIO
@@ -65,6 +66,29 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun getAUser(apiKey: String, userId: String){
+        state.postValue(ViewState.LOADING(true))
+        runIO {
+            when(val user = safeAPICall {
+                networkService.apiService.fetchUser(apiKey, userId)
+            }) {
+                //api call is successful, pass to fragment
+                is ResultWrapper.Success ->  {
+                    //send user to api
+                    val currentUser = user.value
+                    state.postValue(ViewState.USER(currentUser))
+                    state.postValue(ViewState.LOADING(false))
+                }
+
+                //api called failed
+                is ResultWrapper.Error -> {
+                    state.postValue(ViewState.LOADING(false))
+                    state.postValue(user.errorMessage?.let { ViewState.ERROR(it) })
+                }
+            }
+        }
+    }
+
     fun getUserFromDatabase(){
         state.postValue(ViewState.LOADING(true))
         runIO {
@@ -92,6 +116,7 @@ class UserViewModel @Inject constructor(
 
 sealed class ViewState {
     data class SUCCESS(val message: String, val data: List<UserData>): ViewState()
+    data class USER(val data: UserData): ViewState()
     data class LOADING(val loading: Boolean = false) : ViewState()
     data class ERROR(val errorMessage: String): ViewState()
 

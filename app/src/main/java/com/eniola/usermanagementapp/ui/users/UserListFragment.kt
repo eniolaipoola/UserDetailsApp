@@ -26,11 +26,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
     private val adapter by lazy { UserListAdapter(this) }
 
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = UserListFragment()
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_user_list, container, false)
@@ -46,7 +41,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
         //fetch all users from database
         viewModel.getUserFromDatabase()
 
-        //on click of users, navigate to the detail page
 
         //design detail page
 
@@ -68,7 +62,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
         viewModel.state.observe(viewLifecycleOwner) { viewState ->
             when(viewState) {
                 is ViewState.SUCCESS -> {
-                    loader.hide()
                     //pass data list fetched from db to recyclerview
                     adapter.setListItems(viewState.data)
                     user_list_recyclerview.layoutManager = LinearLayoutManager(context,
@@ -88,6 +81,10 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
                         loader.hide()
                     }
                 }
+
+                is ViewState.USER -> {
+                    //get user detail object, pass it to the detail page
+                }
             }
         }
     }
@@ -97,12 +94,13 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
         viewModel.cancelJob()
     }
 
+    //on click of users, navigate to the detail page
     override fun onUserClicked(view: View, item: UserData) {
         //pick user id
+        val userId = item.id
+
         //fetch user details
-
-        //pass details to next page
-
+        viewModel.getAUser(BuildConfig.API_KEY, userId)
 
     }
 }

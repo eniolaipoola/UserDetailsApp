@@ -22,8 +22,9 @@ interface APIService {
     ): UserListResponse<ArrayList<UserData>>
 
     @GET("user/{userId}")
-    suspend fun fetchUser(@Header("app_id") appId: String,
-                          @Path("userId") userId: Int): UserListResponse<UserData>
+    suspend fun fetchUser(
+        @Header("app-id") appId: String,
+        @Path("userId") userId: String): UserData
 
 }
 

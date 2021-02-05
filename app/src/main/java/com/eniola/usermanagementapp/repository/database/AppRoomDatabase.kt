@@ -5,14 +5,10 @@ import androidx.room.*
 import com.eniola.usermanagementapp.BuildConfig
 import com.eniola.usermanagementapp.repository.database.daos.UserDao
 import com.eniola.usermanagementapp.ui.users.UserData
+import com.eniola.usermanagementapp.ui.users.UserDetail
 
-/**
- * Copyright (c) 2021 Eniola Ipoola
- * All rights reserved
- * Created on 19-Jan-2021
- */
 
-@Database(entities = [UserData::class], version = 1, exportSchema = false)
+@Database(entities = [UserData::class, UserDetail::class], version = 1, exportSchema = false)
 @TypeConverters(Converter::class)
 abstract class AppRoomDatabase: RoomDatabase()  {
     companion object {
