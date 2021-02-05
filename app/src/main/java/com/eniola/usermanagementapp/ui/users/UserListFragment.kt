@@ -1,22 +1,50 @@
 package com.eniola.usermanagementapp.ui.users
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.eniola.usermanagementapp.R
+import com.eniola.usermanagementapp.base.BaseFragment
 
 
-class UserListFragment : Fragment() {
+class UserListFragment : BaseFragment() {
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = UserListFragment()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_user_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        //initiate service to update users table
+
+        //fetch all users from database
+
+        //on click of users, navigate to the detail page
+
+        //design detail page
+
+        //show user data on detail page
+
+
+        //write test
+
+        //write readMe
+
+        //try ci/cd
+
+
+    }
+
+    override fun observeData() {
 
     }
 }

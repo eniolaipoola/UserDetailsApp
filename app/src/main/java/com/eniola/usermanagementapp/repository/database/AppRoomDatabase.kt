@@ -1,9 +1,10 @@
-package com.eniola.usermanagementapp.database
+package com.eniola.usermanagementapp.repository.database
 
 import android.content.Context
 import androidx.room.*
 import com.eniola.usermanagementapp.BuildConfig
-import com.eniola.usermanagementapp.ui.users.UserList
+import com.eniola.usermanagementapp.repository.database.daos.UserDao
+import com.eniola.usermanagementapp.ui.users.UserData
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -11,12 +12,12 @@ import com.eniola.usermanagementapp.ui.users.UserList
  * Created on 19-Jan-2021
  */
 
-@Database(entities = [UserList::class], version = 1, exportSchema = false)
+@Database(entities = [UserData::class], version = 1, exportSchema = false)
 
 abstract class AppRoomDatabase: RoomDatabase()  {
     companion object {
         private val DATABASE_NAME =
-            if(BuildConfig.DEBUG) "users_manage" else "user_manage@@@.db"
+            if(BuildConfig.DEBUG) "user_management" else "user_management@@@.db"
         private var sInstance: AppRoomDatabase? = null
 
         fun getInstance(context: Context): AppRoomDatabase? {
@@ -30,5 +31,8 @@ abstract class AppRoomDatabase: RoomDatabase()  {
             return sInstance
         }
     }
+
+    abstract fun userDao(): UserDao
+
 
 }

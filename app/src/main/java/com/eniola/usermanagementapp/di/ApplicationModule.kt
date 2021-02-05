@@ -3,7 +3,7 @@ package com.eniola.usermanagementapp.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.multidex.BuildConfig
-import com.eniola.usermanagementapp.database.AppRoomDatabase
+import com.eniola.usermanagementapp.repository.database.AppRoomDatabase
 import com.eniola.usermanagementapp.utility.SharedPreferenceUtil
 import com.google.gson.GsonBuilder
 import dagger.Module
