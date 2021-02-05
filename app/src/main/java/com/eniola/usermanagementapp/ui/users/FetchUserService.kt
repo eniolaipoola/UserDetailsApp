@@ -13,12 +13,11 @@ class FetchUserService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         return super.onStartCommand(intent, flags, startId)
 
-        //make api call to fetch users
+        //make api call to fetch users subsequently
 
         //on successful fetching, save users in database
 
         //if size isn't up to 100, make another api to fetch users, until size is 100
-
 
 
     }

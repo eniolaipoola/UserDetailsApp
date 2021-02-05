@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -9,6 +10,7 @@ plugins {
 
 android {
     compileSdkVersion(Apps.compileSdk)
+
     defaultConfig {
         minSdkVersion(Apps.minSdk)
         targetSdkVersion(Apps.targetSdk)
@@ -20,9 +22,11 @@ android {
 
     buildTypes {
         getByName("debug") {
-            buildConfigField("String", "BASE_URL", "\"https://dummyapi.io/data/api/\"")
-            applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
+            buildConfigField("String", "API_BASE_URL", "\"https://dummyapi.io/data/api/\"")
+
+            //fetch api key from local.properties file
+            val key: String = gradleLocalProperties(rootDir).getProperty("API_KEY")
+            buildConfigField("String", "API_KEY", key)
         }
 
         getByName("release") {
@@ -44,7 +48,6 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
 
     implementation(Libs.kotlin)
     implementation(Libs.coreKtx)
@@ -89,4 +92,8 @@ dependencies {
 
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+}
+
+repositories {
+    mavenCentral()
 }

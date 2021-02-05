@@ -3,6 +3,7 @@ package com.eniola.usermanagementapp.repository.remote
 import com.eniola.usermanagementapp.ui.users.UserData
 import retrofit2.Retrofit
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import javax.inject.Inject
 
@@ -14,11 +15,13 @@ import javax.inject.Inject
 interface APIService {
 
     @GET("user")
-    suspend fun fetchAllUsers(): UserListResponse<ArrayList<UserData>>
+    suspend fun fetchAllUsers(
+        @Header("app-id") appId: String
+    ): UserListResponse<ArrayList<UserData>>
 
     @GET("user/{userId}")
-    suspend fun fetchUser(
-        @Path("userId") userId: Int): UserListResponse<UserData>
+    suspend fun fetchUser(@Header("app_id") appId: String,
+                          @Path("userId") userId: Int): UserListResponse<UserData>
 
 }
 

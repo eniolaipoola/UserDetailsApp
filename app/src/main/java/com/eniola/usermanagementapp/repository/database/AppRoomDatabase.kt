@@ -13,7 +13,7 @@ import com.eniola.usermanagementapp.ui.users.UserData
  */
 
 @Database(entities = [UserData::class], version = 1, exportSchema = false)
-
+@TypeConverters(Converter::class)
 abstract class AppRoomDatabase: RoomDatabase()  {
     companion object {
         private val DATABASE_NAME =
@@ -33,6 +33,5 @@ abstract class AppRoomDatabase: RoomDatabase()  {
     }
 
     abstract fun userDao(): UserDao
-
 
 }

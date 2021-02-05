@@ -13,7 +13,7 @@ import com.eniola.usermanagementapp.ui.users.UserData
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllUsers(userList: ArrayList<UserData>) : List<Long>
+    suspend fun insertAllUsers(userList: ArrayList<UserData>)
 
     @Query("select * from UserData where id=:id")
     suspend fun getUser(id: String): UserData

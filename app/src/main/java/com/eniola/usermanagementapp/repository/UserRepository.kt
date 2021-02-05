@@ -17,6 +17,10 @@ class UserRepository @Inject constructor(
         return database.userDao().getAllUser()
     }
 
+    suspend fun insertIntoUser(allUsers: ArrayList<UserData>) {
+        return database.userDao().insertAllUsers(allUsers)
+    }
+
     suspend fun fetchAUser(id:String): UserData? {
         return database.userDao().getUser(id)
     }

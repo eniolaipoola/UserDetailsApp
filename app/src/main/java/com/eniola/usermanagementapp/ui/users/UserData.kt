@@ -14,7 +14,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity
-data class UserData(
+data class UserDetail(
         @PrimaryKey
         @SerializedName("id")
         val id: String,
@@ -38,6 +38,24 @@ data class UserData(
         val picture: String,
         @SerializedName("location")
         val location: Location
+) : Parcelable
+
+@Parcelize
+@Entity
+data class UserData(
+        @PrimaryKey
+        @SerializedName("id")
+        val id: String,
+        @SerializedName("title")
+        val title: String,
+        @SerializedName("firstName")
+        val firstName: String,
+        @SerializedName("lastName")
+        val lastName: String,
+        @SerializedName("email")
+        val email: String,
+        @SerializedName("picture")
+        val picture: String
 ) : Parcelable
 
 @Parcelize

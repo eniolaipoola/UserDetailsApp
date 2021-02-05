@@ -26,10 +26,9 @@ suspend fun <T> safeAPICall(dispatcher: CoroutineDispatcher = Dispatchers.IO,
                     ResultWrapper.Error(102, ErrorStatus.TIMEOUT)
                 is HttpException -> {
                     ResultWrapper.Error(401, throwable.message())
-
                 }
                 else -> {
-                    ResultWrapper.Error(null, throwable.localizedMessage)
+                    ResultWrapper.Error(null, throwable.message)
                 }
             }
         }

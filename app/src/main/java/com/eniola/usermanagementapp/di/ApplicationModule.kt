@@ -3,6 +3,7 @@ package com.eniola.usermanagementapp.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.multidex.BuildConfig
+import com.eniola.usermanagementapp.BuildConfig.API_BASE_URL
 import com.eniola.usermanagementapp.repository.database.AppRoomDatabase
 import com.eniola.usermanagementapp.utility.SharedPreferenceUtil
 import com.google.gson.GsonBuilder
@@ -34,11 +35,10 @@ class ApplicationModule  {
             .writeTimeout(30, TimeUnit.SECONDS)
             .build()
 
-        return  Retrofit.Builder().baseUrl(BuildConfig.VERSION_NAME)
+        return  Retrofit.Builder().baseUrl(API_BASE_URL)
             .client(httpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-
     }
 
     @Singleton
@@ -53,7 +53,6 @@ class ApplicationModule  {
         if(BuildConfig.DEBUG){
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         } else loggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
-
         return loggingInterceptor
     }
 

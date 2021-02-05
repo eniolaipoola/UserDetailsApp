@@ -1,22 +1,24 @@
-package com.eniola.usermanagementapp
+package com.eniola.usermanagementapp.repository.database
 
+import androidx.room.TypeConverter
+import com.eniola.usermanagementapp.ui.users.Location
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class Converter {
 
-/*
     @TypeConverter
-    fun fromChapter(chapters: List<Chapters>): String {
+    fun fromLocation(location: Location): String {
         val gson = Gson()
-        return gson.toJson(chapters)
+        return gson.toJson(location)
     }
 
     @TypeConverter
-    fun toChapter(chapterString: String): List<Chapters> {
+    fun toLocation(location: String): Location {
         val gson = Gson()
         val type = object :
-            TypeToken<List<Chapters>>() {}.type
-        return gson.fromJson(chapterString, type)
+            TypeToken<Location>() {}.type
+        return gson.fromJson(location, type)
     }
 
-*/
 }
