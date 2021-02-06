@@ -44,11 +44,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
 
         //write test
 
-        //write readMe
-
-        //try ci/cd
-
-
         observeData()
 
     }
@@ -57,6 +52,7 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
         viewModel.state.observe(viewLifecycleOwner) { viewState ->
             when(viewState) {
                 is ViewState.SUCCESS -> {
+                    loader.hide()
                     //pass data list fetched from db to recyclerview
                     adapter.setListItems(viewState.data)
                     user_list_recyclerview.layoutManager = LinearLayoutManager(context,

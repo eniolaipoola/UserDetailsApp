@@ -60,10 +60,10 @@ class UserDetailFragment : BaseFragment() {
                         Picasso.get().load(imageUrl).placeholder(
                                 R.drawable.ic_profile_icon).fit().into(image)
 
-                        user_email.text = "Email: " + userObject.email
+                        user_email.text = getString(R.string.detail_page_email) + userObject.email
                         user_location.text = userObject.location.country+ " " + userObject.location.state
-                        phone_number_text.text = "Phone: " + userObject.phone
-                        gender.text = "Gender: " + userObject.gender
+                        phone_number_text.text = getString(R.string.detail_page_phone_text) + userObject.phone
+                        gender.text = getString(R.string.detail_page_gender) + userObject.gender
                     }
                 }
             }
