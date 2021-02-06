@@ -1,6 +1,5 @@
 package com.eniola.usermanagementapp.ui.users
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.eniola.studyapp.utility.runIO
@@ -66,18 +65,29 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    fun getAUser(apiKey: String, userId: String){
+    fun fetchUserDetailFromApi(apiKey: String, userId: String){
         state.postValue(ViewState.LOADING(true))
         runIO {
             when(val user = safeAPICall {
                 networkService.apiService.fetchUser(apiKey, userId)
             }) {
                 //api call is successful, pass to fragment
-                is ResultWrapper.Success ->  {
-                    //send user to api
-                    val currentUser = user.value
-                    state.postValue(ViewState.USER(currentUser))
-                    state.postValue(ViewState.LOADING(false))
+                is ResultWrapper.Success ->  when(val userDetail = safeAPICall {
+                    val userDetail = user.value.body()
+                    userDetail?.let { userRepository.saveUserDetail(it) }
+                })  {
+                    is ResultWrapper.Success -> {
+                        //pass data to detail fragment
+                        state.postValue(ViewState.LOADING(false))
+                        getUserDetailFromDatabase(userId)
+                    }
+
+                    is ResultWrapper.Error -> {
+                        //notify fragment of error
+                        state.postValue(ViewState.LOADING(false))
+                        state.postValue(ViewState.ERROR(user.value.message()))
+
+                    }
                 }
 
                 //api called failed
@@ -97,7 +107,7 @@ class UserViewModel @Inject constructor(
                 userRepository.fetchAllUsers()
             }) {
                 is ResultWrapper.Success -> {
-                    //successfully saved into database
+                    //successfully fetched from database
                     val allUsers = getUser.value
                     state.postValue(ViewState.LOADING(false))
                     state.postValue(ViewState.SUCCESS(
@@ -112,11 +122,33 @@ class UserViewModel @Inject constructor(
         }
     }
 
+    fun getUserDetailFromDatabase(userId: String){
+        state.postValue(ViewState.LOADING(true))
+        runIO {
+            //fetch user detail from database
+            when (val getUserDetail = safeAPICall {
+                userRepository.fetchUserDetail(userId)
+            }) {
+                is ResultWrapper.Success -> {
+                    //successfully fetched user detail from database
+                    val userDetail = getUserDetail.value
+                    state.postValue(ViewState.LOADING(false))
+                    state.postValue(ViewState.USERDETAIL(userDetail))
+                }
+
+                is ResultWrapper.Error -> {
+                    state.postValue(getUserDetail.errorMessage?.let { ViewState.ERROR(it) })
+                    state.postValue(ViewState.LOADING(false))
+                }
+            }
+        }
+    }
+
 }
 
 sealed class ViewState {
     data class SUCCESS(val message: String, val data: List<UserData>): ViewState()
-    data class USER(val data: UserData): ViewState()
+    data class USERDETAIL(val data: UserDetail?): ViewState()
     data class LOADING(val loading: Boolean = false) : ViewState()
     data class ERROR(val errorMessage: String): ViewState()
 

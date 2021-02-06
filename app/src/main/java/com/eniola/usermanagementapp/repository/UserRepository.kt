@@ -2,6 +2,7 @@ package com.eniola.usermanagementapp.repository
 
 import com.eniola.usermanagementapp.repository.database.AppRoomDatabase
 import com.eniola.usermanagementapp.ui.users.UserData
+import com.eniola.usermanagementapp.ui.users.UserDetail
 import javax.inject.Inject
 
 /**
@@ -24,4 +25,13 @@ class UserRepository @Inject constructor(
     suspend fun fetchAUser(id:String): UserData? {
         return database.userDao().getUser(id)
     }
+
+    suspend fun saveUserDetail(userDetail: UserDetail) {
+        return database.userDao().saveUserDetail(userDetail)
+    }
+
+    suspend fun fetchUserDetail(userId: String) : UserDetail{
+        return database.userDao().fetchUserDetail(userId)
+    }
+
 }

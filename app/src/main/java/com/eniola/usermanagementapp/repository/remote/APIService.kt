@@ -1,6 +1,9 @@
 package com.eniola.usermanagementapp.repository.remote
 
 import com.eniola.usermanagementapp.ui.users.UserData
+import com.eniola.usermanagementapp.ui.users.UserDetail
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -24,7 +27,7 @@ interface APIService {
     @GET("user/{userId}")
     suspend fun fetchUser(
         @Header("app-id") appId: String,
-        @Path("userId") userId: String): UserData
+        @Path("userId") userId: String): Response<UserDetail>
 
 }
 

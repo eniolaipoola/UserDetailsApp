@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eniola.studyapp.utility.hide
 import com.eniola.studyapp.utility.show
@@ -40,12 +41,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
 
         //fetch all users from database
         viewModel.getUserFromDatabase()
-
-
-        //design detail page
-
-        //show user data on detail page
-
 
         //write test
 
@@ -81,10 +76,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
                         loader.hide()
                     }
                 }
-
-                is ViewState.USER -> {
-                    //get user detail object, pass it to the detail page
-                }
             }
         }
     }
@@ -98,9 +89,10 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
     override fun onUserClicked(view: View, item: UserData) {
         //pick user id
         val userId = item.id
+        val bundle = Bundle()
+        bundle.putString("userId", userId)
 
-        //fetch user details
-        viewModel.getAUser(BuildConfig.API_KEY, userId)
-
+        //pass user id to detail page
+        findNavController().navigate(R.id.go_to_userDetailFragment, bundle )
     }
 }

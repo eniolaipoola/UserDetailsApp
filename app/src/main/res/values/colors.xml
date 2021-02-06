@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#81000000</color>
+    <color name="greyWhite">#FEFEFE</color>
     <color name="landing_page_card_color">#745AFB</color>
     <color name="item_card_background_color">#C4C4C4</color>
     <color name="image_placeholder_background">#FFEBF0</color>

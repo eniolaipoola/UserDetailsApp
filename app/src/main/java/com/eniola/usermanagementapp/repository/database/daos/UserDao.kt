@@ -2,6 +2,7 @@ package com.eniola.usermanagementapp.repository.database.daos
 
 import androidx.room.*
 import com.eniola.usermanagementapp.ui.users.UserData
+import com.eniola.usermanagementapp.ui.users.UserDetail
 
 /**
  * Copyright (c) 2021 Eniola Ipoola
@@ -20,5 +21,12 @@ interface UserDao {
 
     @Query("select * from UserData")
     suspend fun getAllUser(): List<UserData>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveUserDetail(userDetail: UserDetail)
+
+    @Query("select * from UserDetail where id=:userId")
+    suspend fun fetchUserDetail(userId: String): UserDetail
+
 
 }

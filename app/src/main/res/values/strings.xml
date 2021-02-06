@@ -7,4 +7,8 @@
     <string name="userName">Eniola Ipoola</string>
     <string name="title">Miss</string>
     <string name="email">eniolaipoola@gmail.com</string>
+    <string name="user_profile">User Profile</string>
+    <string name="lagos_nigeria">Lagos Nigeria</string>
+    <string name="phone_number">+23463738144</string>
+    <string name="gender">Gender:</string>
 </resources>
