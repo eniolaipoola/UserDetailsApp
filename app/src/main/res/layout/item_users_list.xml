@@ -34,8 +34,8 @@
 
         <TextView
             android:id="@+id/user_title"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginStart="32dp"
             tools:textSize="18dp"
             tools:text="@string/title"
@@ -49,10 +49,10 @@
             android:id="@+id/user_name"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="8dp"
             tools:text="@string/userName"
             android:textSize="18dp"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|start"
             android:textColor="@color/name_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_title"

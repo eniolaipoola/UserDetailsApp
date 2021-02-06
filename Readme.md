@@ -23,6 +23,6 @@ API_KEY = "the string you generated"
 
 
 ### Images
-<img width="400" alt="image1" src="https://user-images.githubusercontent.com/19291341/107105800-6d7fba80-6828-11eb-875c-cb6426e0c070.png">
+<img width="391" alt="image 1" src="https://user-images.githubusercontent.com/19291341/107106384-ac633f80-682b-11eb-9fc2-4d22a594d59f.png">
 <img width="382" alt="image2" src="https://user-images.githubusercontent.com/19291341/107105804-71134180-6828-11eb-8111-299b0200c7c6.png">
 

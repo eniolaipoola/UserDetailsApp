@@ -42,8 +42,6 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
         //fetch all users from database
         viewModel.getUserFromDatabase()
 
-        //write test
-
         observeData()
 
     }
