@@ -1,3 +1,5 @@
+import Versions.mockitoInline
+
 /**
  * Copyright (c) 2021 Eniola Ipoola
  * All rights reserved
@@ -30,7 +32,8 @@ object Versions {
     /* test variable */
     const val junit = "4.12"
     const val mockito = "1.10.19"
-    const val mockitoInline = "2.13.0"
+    const val mockitoInline = "2.1.0"
+    const val mockitoKotlin = "1.5.0"
 }
 
 object Libs {
@@ -68,5 +71,7 @@ object Libs {
 object TestLibs {
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    const val mockitoInline = "testImplementation 'org.mockito:mockito-inline:${Versions.mockitoInline}"
+    //const val mockitoInline = "testImplementation 'org.mockito:mockito-inline:${Versions.mockitoInline}"
+    //const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${mockitoKotlin}"
+
 }

@@ -1,5 +1,5 @@
-## UserManagementApp
-UserManagement fetches a list of users and populates it on a recyclerview. On click of a user, the app navigates to
+## UserDetailsApp
+UserDetails fetches a list of users and populates it on a recyclerview. On click of a user, the app navigates to
 the detail page that gives more information about the user.
 
 ## Guideline
