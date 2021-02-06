@@ -2,4 +2,16 @@
     <string name="app_name">UserManagementApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_users">All Users</string>
+    <string name="userImage">User Image</string>
+    <string name="userName">Eniola Ipoola</string>
+    <string name="title">Miss</string>
+    <string name="email">eniolaipoola@gmail.com</string>
+    <string name="user_profile">User Profile</string>
+    <string name="lagos_nigeria">Lagos Nigeria</string>
+    <string name="phone_number">+23463738144</string>
+    <string name="gender">Gender:</string>
+    <string name="detail_page_email">\"Email: \"</string>
+    <string name="detail_page_phone_text">\"Phone: \"</string>
+    <string name="detail_page_gender">\"Gender: \"</string>
 </resources>

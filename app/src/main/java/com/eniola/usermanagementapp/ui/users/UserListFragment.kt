@@ -1,22 +1,92 @@
 package com.eniola.usermanagementapp.ui.users
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.eniola.studyapp.utility.hide
+import com.eniola.studyapp.utility.show
+import com.eniola.studyapp.utility.toast
+import com.eniola.usermanagementapp.BuildConfig
+import com.eniola.usermanagementapp.R
+import com.eniola.usermanagementapp.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_user_list.*
+import javax.inject.Inject
 
 
-class UserListFragment : Fragment() {
+class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() = UserListFragment()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<UserViewModel> { viewModelFactory }
+    private val adapter by lazy { UserListAdapter(this) }
 
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_user_list, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //make api call to fetch all users
+        val apiKey = BuildConfig.API_KEY
+        viewModel.fetchAllUsers(apiKey)
+
+        //fetch all users from database
+        viewModel.getUserFromDatabase()
+
+        observeData()
+
+    }
+
+    override fun observeData() {
+        viewModel.state.observe(viewLifecycleOwner) { viewState ->
+            when(viewState) {
+                is ViewState.SUCCESS -> {
+                    loader.hide()
+                    //pass data list fetched from db to recyclerview
+                    adapter.setListItems(viewState.data)
+                    user_list_recyclerview.layoutManager = LinearLayoutManager(context,
+                        LinearLayoutManager.VERTICAL, false)
+                    user_list_recyclerview.adapter = adapter
+                }
+
+                is ViewState.ERROR -> {
+                    loader.hide()
+                    activity?.toast(viewState.errorMessage)
+                }
+
+                is ViewState.LOADING -> {
+                    if(viewState.loading){
+                        loader.show()
+                    } else {
+                        loader.hide()
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.cancelJob()
+    }
+
+    //on click of users, navigate to the detail page
+    override fun onUserClicked(view: View, item: UserData) {
+        //pick user id
+        val userId = item.id
+        val bundle = Bundle()
+        bundle.putString("userId", userId)
+
+        //pass user id to detail page
+        findNavController().navigate(R.id.go_to_userDetailFragment, bundle )
     }
 }
