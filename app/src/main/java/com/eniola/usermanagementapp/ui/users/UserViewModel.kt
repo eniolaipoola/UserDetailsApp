@@ -2,11 +2,11 @@ package com.eniola.usermanagementapp.ui.users
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.eniola.studyapp.utility.runIO
 import com.eniola.usermanagementapp.repository.UserRepository
 import com.eniola.usermanagementapp.repository.remote.NetworkService
 import com.eniola.usermanagementapp.repository.remote.ResultWrapper
 import com.eniola.usermanagementapp.repository.remote.safeAPICall
+import com.eniola.usermanagementapp.utility.runIO
 import kotlinx.coroutines.Job
 import javax.inject.Inject
 
@@ -42,7 +42,7 @@ class UserViewModel @Inject constructor(
             }) {
                 //api call is successful, save into database
                 is ResultWrapper.Success ->  when (val localUser = safeAPICall {
-                    //run saving into database on an IO coroutine dispatcher
+                    //save data into database on an IO coroutine dispatcher
                     userRepository.insertIntoUser(allUsers.value.data)
                 }){
                     is ResultWrapper.Success -> {
@@ -74,10 +74,10 @@ class UserViewModel @Inject constructor(
                 //api call is successful, pass to fragment
                 is ResultWrapper.Success ->  when(val userDetail = safeAPICall {
                     val userDetail = user.value.body()
+                    //save to database
                     userDetail?.let { userRepository.saveUserDetail(it) }
                 })  {
                     is ResultWrapper.Success -> {
-                        //pass data to detail fragment
                         state.postValue(ViewState.LOADING(false))
                         getUserDetailFromDatabase(userId)
                     }
@@ -133,12 +133,13 @@ class UserViewModel @Inject constructor(
                     //successfully fetched user detail from database
                     val userDetail = getUserDetail.value
                     state.postValue(ViewState.LOADING(false))
-                    state.postValue(ViewState.USERDETAIL(userDetail))
+                    state.postValue(ViewState.USERDETAIL(userDetail,
+                            "User details successfully fetched"))
                 }
 
                 is ResultWrapper.Error -> {
-                    state.postValue(getUserDetail.errorMessage?.let { ViewState.ERROR(it) })
                     state.postValue(ViewState.LOADING(false))
+                    state.postValue(getUserDetail.errorMessage?.let { ViewState.ERROR(it) })
                 }
             }
         }
@@ -148,7 +149,7 @@ class UserViewModel @Inject constructor(
 
 sealed class ViewState {
     data class SUCCESS(val message: String, val data: List<UserData>): ViewState()
-    data class USERDETAIL(val data: UserDetail?): ViewState()
+    data class USERDETAIL(val data: UserDetail?, val message: String): ViewState()
     data class LOADING(val loading: Boolean = false) : ViewState()
     data class ERROR(val errorMessage: String): ViewState()
 

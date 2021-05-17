@@ -1,5 +1,3 @@
-import Versions.mockitoInline
-
 /**
  * Copyright (c) 2021 Eniola Ipoola
  * All rights reserved
@@ -30,7 +28,7 @@ object Versions {
     const val legacySupport = "1.0.0"
     const val picasso = "2.71828"
     /* test variable */
-    const val junit = "4.12"
+    const val junit = "4.+"
     const val mockito = "1.10.19"
     const val mockitoInline = "2.13.0"
     const val mockitoKotlin = "1.5.0"
@@ -72,5 +70,9 @@ object TestLibs {
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
-
+    const val extJunit = "androidx.test.ext:junit:1.1.2"
+    const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+    const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
+    const val fragmentTesting = "androidx.fragment:fragment-testing:1.3.0"
+    const val testCoreLibrary = "androidx.test:core:1.3.0"
 }

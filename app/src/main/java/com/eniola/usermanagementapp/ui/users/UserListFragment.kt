@@ -56,6 +56,7 @@ class UserListFragment : BaseFragment(), UserListAdapter.UserClickedListener {
                     user_list_recyclerview.layoutManager = LinearLayoutManager(context,
                         LinearLayoutManager.VERTICAL, false)
                     user_list_recyclerview.adapter = adapter
+                    activity?.toast(viewState.message)
                 }
 
                 is ViewState.ERROR -> {

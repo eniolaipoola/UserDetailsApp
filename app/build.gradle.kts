@@ -82,6 +82,8 @@ dependencies {
     implementation(Libs.liveData)
     implementation(Libs.viewModel)
 
+    implementation("de.hdodenhof:circleimageview:3.0.1")
+
     //picasso
     implementation(Libs.picasso)
 
@@ -94,9 +96,12 @@ dependencies {
     testImplementation(TestLibs.junit)
     testImplementation(TestLibs.mockito)
     testImplementation(TestLibs.mockitoInline)
-
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation(TestLibs.extJunit)
+    androidTestImplementation(TestLibs.espresso)
+    androidTestImplementation(TestLibs.coreTesting)
+    androidTestImplementation(TestLibs.testCoreLibrary)
+    androidTestImplementation(TestLibs.fragmentTesting)
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3")
 }
 
 repositories {

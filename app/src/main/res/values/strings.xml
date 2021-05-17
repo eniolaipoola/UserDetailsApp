@@ -11,7 +11,10 @@
     <string name="lagos_nigeria">Lagos Nigeria</string>
     <string name="phone_number">+23463738144</string>
     <string name="gender">Gender:</string>
-    <string name="detail_page_email">\"Email: \"</string>
-    <string name="detail_page_phone_text">\"Phone: \"</string>
-    <string name="detail_page_gender">\"Gender: \"</string>
+    <string name="detail_page_email">Email: </string>
+    <string name="detail_page_phone_text">Phone: </string>
+    <string name="detail_page_gender">Gender: </string>
+    <string name="initials">EI</string>
+    <string name="call">Call</string>
+    <string name="text">Text</string>
 </resources>

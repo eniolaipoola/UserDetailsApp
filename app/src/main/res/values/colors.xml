@@ -10,9 +10,13 @@
     <color name="grey">#81000000</color>
     <color name="greyWhite">#FEFEFE</color>
     <color name="landing_page_card_color">#745AFB</color>
+    <color name="color_primary">#191919</color>
+    <color name="color_primary_dark">#191919</color>
+    <color name="color_background_dark">#2C2C2C</color>
     <color name="item_card_background_color">#C4C4C4</color>
-    <color name="image_placeholder_background">#FFEBF0</color>
+    <color name="image_placeholder_background">#8E44AD</color>
     <color name="name_text_color">#3D4B65</color>
+    <color name="line_break_color">#3E3E3E</color>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.eniola.studyapp.utility
+package com.eniola.usermanagementapp.utility
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.CoroutineScope

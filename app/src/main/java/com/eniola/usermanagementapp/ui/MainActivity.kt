@@ -1,7 +1,7 @@
 package com.eniola.usermanagementapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.eniola.usermanagementapp.R
 
 class MainActivity : AppCompatActivity() {
