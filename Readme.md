@@ -23,6 +23,5 @@ API_KEY = "the string you generated"
 
 
 ### Images
-<img width="391" alt="image 1" src="https://user-images.githubusercontent.com/19291341/107106384-ac633f80-682b-11eb-9fc2-4d22a594d59f.png">
-<img width="382" alt="image2" src="https://user-images.githubusercontent.com/19291341/107105804-71134180-6828-11eb-8111-299b0200c7c6.png">
-
+<img width="487" alt="Screenshot 2021-05-17 at 4 57 21 PM" src="https://user-images.githubusercontent.com/19291341/118519588-2b241e80-b731-11eb-994e-380ffed4bc6f.png">
+<img width="491" alt="Screenshot 2021-05-17 at 4 57 10 PM" src="https://user-images.githubusercontent.com/19291341/118519609-2f503c00-b731-11eb-8c21-757ba0d71280.png">
