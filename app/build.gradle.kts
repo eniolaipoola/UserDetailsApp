@@ -96,11 +96,11 @@ dependencies {
     testImplementation(TestLibs.junit)
     testImplementation(TestLibs.mockito)
     testImplementation(TestLibs.mockitoInline)
-    androidTestImplementation(TestLibs.extJunit)
-    androidTestImplementation(TestLibs.espresso)
-    androidTestImplementation(TestLibs.coreTesting)
-    androidTestImplementation(TestLibs.testCoreLibrary)
-    androidTestImplementation(TestLibs.fragmentTesting)
+    testImplementation(TestLibs.extJunit)
+    testImplementation(TestLibs.espresso)
+    testImplementation(TestLibs.coreTesting)
+    testImplementation(TestLibs.testCoreLibrary)
+    testImplementation(TestLibs.fragmentTesting)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3")
 }
 

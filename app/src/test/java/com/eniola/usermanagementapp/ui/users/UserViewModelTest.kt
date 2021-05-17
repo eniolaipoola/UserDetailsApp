@@ -1,6 +1,7 @@
 package com.eniola.usermanagementapp.ui.users
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
 import com.eniola.usermanagementapp.repository.database.AppRoomDatabase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -24,12 +25,8 @@ class UserViewModelTest {
 
     private lateinit var database: AppRoomDatabase
 
-   /* @get:Rule
-    var instantExecutorRule = InstantTaskExecutorRule()
-
-    @ExperimentalCoroutinesApi
     @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()*/
+    var instantExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var userViewModel: UserViewModel
 

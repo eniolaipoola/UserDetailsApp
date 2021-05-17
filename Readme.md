@@ -3,7 +3,7 @@ UserDetails fetches a list of users and populates it on a recyclerview. On click
 the detail page that gives more information about the user.
 
 ## Guideline
-1. Clone from the master branch.
+1. Clone from the v2 branch.
 2. The data used is fetched from https://dummyapi.io/. To use this API, you need to sign-up with https://dummyapi.io/ and generate an App Id.
 3. Place the API ID as API_KEY in your local.properties file
 ```
